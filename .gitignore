@@ -1,0 +1,11 @@
+/*/.gitignore
+**/target/*
+*.class
+*.~sql
+**/.settings
+**/.project
+**/.tern-project
+**/.classpath
+/fiplangci-web/src/main/webapp/resources/gmap/yellow.svg
+/*.~sql
+
