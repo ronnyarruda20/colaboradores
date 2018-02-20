@@ -5,7 +5,6 @@
 	version="3.1">
 
 	<display-name>Colaboradores</display-name>
-
 	<welcome-file-list>
 		<welcome-file>index.xhtml</welcome-file>
 	</welcome-file-list>
@@ -29,6 +28,5 @@
 		<servlet-name>Faces Servlet</servlet-name>
 		<url-pattern>*.xhtml</url-pattern>
 	</servlet-mapping>
-
 
 </web-app>

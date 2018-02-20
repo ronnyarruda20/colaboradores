@@ -32,38 +32,36 @@
 		</dependency>
 
 		<dependency>
+			<groupId>org.jboss.spec.javax.transaction</groupId>
+			<artifactId>jboss-transaction-api_1.2_spec</artifactId>
+			<version>1.0.0.Final</version>
+		</dependency>
+
+		<dependency>
 			<groupId>javax.enterprise</groupId>
 			<artifactId>cdi-api</artifactId>
 			<version>2.0</version>
 			<scope>provided</scope>
 		</dependency>
 
-		<!-- Servlet -->
-		<!-- <dependency> -->
-		<!-- <groupId>javax.servlet</groupId> -->
-		<!-- <artifactId>javax.servlet-api</artifactId> -->
-		<!-- <version>3.1.0</version> -->
-		<!-- </dependency> -->
-		<!-- <dependency> -->
-		<!-- <groupId>javax.servlet.jsp</groupId> -->
-		<!-- <artifactId>javax.servlet.jsp-api</artifactId> -->
-		<!-- <version>2.3.1</version> -->
-		<!-- </dependency> -->
-		<!-- <dependency> -->
-		<!-- <groupId>javax.servlet</groupId> -->
-		<!-- <artifactId>jstl</artifactId> -->
-		<!-- <version>1.2</version> -->
-		<!-- </dependency> -->
+		<dependency>
+			<groupId>org.postgresql</groupId>
+			<artifactId>postgresql</artifactId>
+			<version>42.2.1</version>
+		</dependency>
 
-		<!-- <dependency> -->
-		<!-- <groupId>org.hibernate</groupId> -->
-		<!-- <artifactId>hibernate-entitymanager</artifactId> -->
-		<!-- <version>4.3.0.Final</version> -->
-		<!-- </dependency> -->
+		<dependency>
+			<groupId>joda-time</groupId>
+			<artifactId>joda-time</artifactId>
+			<version>2.9.9</version>
+		</dependency>
 
 	</dependencies>
 
 	<build>
+
+		<finalName>colaboradores</finalName>
+
 		<plugins>
 
 			<plugin>
@@ -85,5 +83,6 @@
 			</plugin>
 
 		</plugins>
+
 	</build>
 </project>

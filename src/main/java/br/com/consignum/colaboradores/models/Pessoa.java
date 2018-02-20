@@ -44,7 +44,70 @@ public class Pessoa {
 	
 	@Transient
 	private List<InfoBancario> bancoList = new ArrayList<InfoBancario>();
-	
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+	public Date getNascimento() {
+		return nascimento;
+	}
+
+	public void setNascimento(Date nascimento) {
+		this.nascimento = nascimento;
+	}
+
+	public String getRegistroGeral() {
+		return registroGeral;
+	}
+
+	public void setRegistroGeral(String registroGeral) {
+		this.registroGeral = registroGeral;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public Endereco getEndereco() {
+		return endereco;
+	}
+
+	public void setEndereco(Endereco endereco) {
+		this.endereco = endereco;
+	}
+
+	public Set<InfoBancario> getBancos() {
+		return bancos;
+	}
+
+	public void setBancos(Set<InfoBancario> bancos) {
+		this.bancos = bancos;
+	}
+
+	public List<InfoBancario> getBancoList() {
+		return bancoList;
+	}
+
+	public void setBancoList(List<InfoBancario> bancoList) {
+		this.bancoList = bancoList;
+	}
 	
 	
 }
