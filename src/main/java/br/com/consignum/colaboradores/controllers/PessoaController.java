@@ -1,10 +1,24 @@
 package br.com.consignum.colaboradores.controllers;
 
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
+import java.io.Serializable;
 
+import javax.faces.view.ViewScoped;
+import javax.inject.Named;
+
+import br.com.consignum.colaboradores.repository.PessoaRepository;
+
+@Named("pessoaController")
 @ViewScoped
-@ManagedBean
-public class PessoaController {
+public class PessoaController implements Serializable {
 
+	private static final long serialVersionUID = 8221389380643774417L;
+
+	private PessoaRepository pessoaRepository;
+
+
+	public void lista() {
+		System.out.println(pessoaRepository.findAll());
+	}
+
+	
 }

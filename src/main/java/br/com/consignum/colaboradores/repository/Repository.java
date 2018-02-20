@@ -6,7 +6,6 @@ import javax.persistence.PersistenceContext;
 public class Repository {
 
 	@PersistenceContext(name = "PersistentUnitName")
-	private EntityManager entityManager;
-	
-	
+	protected EntityManager entityManager;
+
 }
