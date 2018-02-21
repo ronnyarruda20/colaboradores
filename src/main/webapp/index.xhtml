@@ -1,6 +1,5 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	xmlns:c="http://java.sun.com/jsp/jstl/core"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
@@ -10,7 +9,37 @@
 </h:head>
 
 <h:body>
-hello world	
-<h:outputLabel>#{pessoaController.lista()}</h:outputLabel>
+	<h:form id="form">
+		<p:panel header="Teste">
+		
+		</p:panel>
+		<h:button value="Incluir" styleClass="btn btn-primary"></h:button>
+
+			<h3>Lista Pessoas</h3>
+
+			<p:dataTable var="pessoa" value="#{pessoaController.pessoaList}"
+				reflow="true" rows="5" paginator="true">
+				<p:column headerText="Id">
+					<h:outputText value="#{pessoa.id}" />
+				</p:column>
+
+				<p:column headerText="Nome">
+					<h:outputText value="#{pessoa.nome}" />
+				</p:column>
+
+				<p:column headerText="Data de Nascimetno">
+					<h:outputText value="#{pessoa.nascimento}" />
+				</p:column>
+
+				<p:column headerText="Email">
+					<h:outputText value="#{pessoa.email}" />
+				</p:column>
+
+				<p:column headerText="Registro geral">
+					<h:outputText value="#{pessoa.registroGeral}" />
+				</p:column>
+			</p:dataTable>
+	</h:form>
+	
 </h:body>
 </html>

@@ -10,4 +10,5 @@ public class PessoaRepository extends Repository<Pessoa> {
 	public PessoaRepository() {
 		super.setType(Pessoa.class);
 	}
+	
 }
