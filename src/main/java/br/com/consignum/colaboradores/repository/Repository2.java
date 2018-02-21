@@ -12,7 +12,7 @@ public abstract class Repository2<T> {
 
 	private Class<T> type;
 
-	@PersistenceUnit(unitName = "ColaboradorDB")
+	@PersistenceUnit(unitName = "ColaboradorPU")
 	protected EntityManagerFactory emf;
 	private EntityManager em;
 

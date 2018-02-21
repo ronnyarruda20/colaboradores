@@ -41,15 +41,15 @@ public class PessoaController  implements Serializable {
 	}
 
 	public void lista() {
-		Pessoa p = new Pessoa();
-		p.setNome("Ronny de Arruda");
-		p.setEmail("ronnyapinho@gmail.com");
-		p.setNascimento(new DateTime(1988,01,26, 0, 0).toDate());
-		p.setRegistroGeral("17218551");
-		Pessoa pi = pessoaRepository.merge(p);
-		System.out.println(pi.getId());
-		System.out.println(pessoaRepository.findAll());
-//		System.out.println(pessoaRepository.find(pi).getNome());
+//		Pessoa p = new Pessoa();
+//		p.setNome("Ronny de Arruda");
+//		p.setEmail("ronnyapinho@gmail.com");
+//		p.setNascimento(new DateTime(1988,01,26, 0, 0).toDate());
+//		p.setRegistroGeral("17218551");
+//		Pessoa pi = pessoaRepository.merge(p);
+//		System.out.println(pi.getId());
+//		System.out.println(pessoaRepository.findAll());
+//		System.out.println(pessoaRepository.find(10).getNome());
 	}
 
 }
