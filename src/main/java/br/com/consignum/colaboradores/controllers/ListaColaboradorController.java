@@ -12,9 +12,9 @@ import javax.inject.Named;
 import br.com.consignum.colaboradores.models.Pessoa;
 import br.com.consignum.colaboradores.repository.PessoaRepository;
 
-@Named("manterPessoaController")
+@Named("listaColaboradorController")
 @ViewScoped
-public class ManterPessoaController implements Serializable {
+public class ListaColaboradorController implements Serializable {
 
 	private static final long serialVersionUID = 8221389380643774417L;
 
@@ -32,7 +32,6 @@ public class ManterPessoaController implements Serializable {
 	public void init() {
 		pessoaList = new ArrayList<Pessoa>();
 		pessoaList.addAll(this.pessoaList());
-		System.out.println(pessoaList);
 	}
 
 

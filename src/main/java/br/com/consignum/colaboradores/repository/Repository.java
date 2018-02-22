@@ -12,7 +12,7 @@ public abstract class Repository<T> {
 	private Class<T> type;
 
 	@Inject
-	protected EntityManager em;
+	private EntityManager em;
 
 	@SuppressWarnings("unchecked")
 	public List<T> findAll() {
@@ -45,6 +45,22 @@ public abstract class Repository<T> {
 		em.getTransaction().commit();
 		return t;
 	}
+	
+	public T find(Integer id) {
+		T t = null;
+		em.getTransaction().begin();
+		t = (T) em.find(type, id);
+		em.getTransaction().commit();
+		return t;
+	}
+	
+	public void remove(T t) {
+		em.getTransaction().begin();
+		em.remove(t);
+		em.getTransaction().commit();
+	}
+	
+	
 
 	public Class<T> getType() {
 		return type;
@@ -52,6 +68,14 @@ public abstract class Repository<T> {
 
 	public void setType(Class<T> type) {
 		this.type = type;
+	}
+
+	public EntityManager getEm() {
+		return em;
+	}
+
+	public void setEm(EntityManager em) {
+		this.em = em;
 	}
 
 }

@@ -11,4 +11,12 @@ public class PessoaRepository extends Repository<Pessoa> {
 		super.setType(Pessoa.class);
 	}
 	
+//	@Override
+//	public void save(Pessoa t) {
+//		em.getTransaction().begin();
+//		t = em.merge(t);
+//		em.persist(t.getEndereco());
+//		em.getTransaction().commit();
+//	}
+	
 }

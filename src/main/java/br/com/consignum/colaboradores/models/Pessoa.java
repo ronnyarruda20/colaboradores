@@ -36,8 +36,8 @@ public class Pessoa {
 	@Column(name = "EMAIL", length = 100, nullable = false)
 	private String email;
 	
-	@OneToOne(mappedBy = "pessoa")
-	private Endereco endereco;
+	@OneToOne(mappedBy = "pessoa" , cascade = CascadeType.ALL)
+	private Endereco endereco = new Endereco();
 	
 	@OneToMany(mappedBy = "pessoa", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
 	private Set<InfoBancario> bancos = new HashSet<InfoBancario>();

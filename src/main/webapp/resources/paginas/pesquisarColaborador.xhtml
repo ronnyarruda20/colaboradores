@@ -1,0 +1,76 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" template="/WEB-INF/template.xhtml"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+
+	<ui:define name="corpo">
+
+
+
+		<h:form>
+
+			<h2>Cadastrar Colaborador</h2>
+			<p:messages closable="true" autoUpdate="true" />
+
+			<p:dataTable var="colaborador"
+				value="#{listaColaboradorController.pessoaList}" reflow="true"
+				rows="5" paginator="true">
+
+				<p:column headerText="Nome">
+					<h:outputText value="#{colaborador.nome}" />
+				</p:column>
+
+				<p:column headerText="Nascimento">
+					<h:outputText value="#{colaborador.nascimento}"
+						converter="javax.faces.DateTime" />
+				</p:column>
+
+				<p:column headerText="Email">
+					<h:outputText value="#{colaborador.email}" />
+				</p:column>
+
+				<p:column headerText="RG">
+					<h:outputText value="#{colaborador.registroGeral}" />
+				</p:column>
+
+				<p:column headerText="Ações" style="text-align:center" width="100">
+
+					<p:commandButton id="edir" title="Editar"
+						icon="fa fa-edit white Fs10"
+						action="#{manterColaboradorController.editar(colaborador)}" />
+
+					<p:commandButton title="Editar" icon="fa fa-remove white Fs10"
+						action="#{manterColaboradorController.remover(colaborador)}"
+						update="@form">
+						<p:confirm header="Exclusão de registro permanente"
+							message="Tem Certeza que dejesa excluir este registro?"
+							icon="ui-icon-blank" />
+					</p:commandButton>
+				</p:column>
+
+			</p:dataTable>
+
+			<p:confirmDialog id="dialogBox" global="true" showEffect="fade"
+				hideEffect="fade">
+				<p:commandButton value="Sim" type="button"
+					styleClass="ui-confirmdialog-yes Fleft"
+					icon="ui-icon-check fa fa-check white Fs14" />
+				<p:commandButton value="Não" type="button"
+					styleClass="ui-confirmdialog-no "
+					icon="ui-icon-check fa fa-mail-reply white Fs14" />
+			</p:confirmDialog>
+
+		</h:form>
+
+		<h:form style="padding:10px">
+			<p:panelGrid>
+				<p:button value="Incluir"
+					outcome="/resources/paginas/cadastrarColaborador" />
+			</p:panelGrid>
+		</h:form>
+	</ui:define>
+
+</ui:composition>
+
