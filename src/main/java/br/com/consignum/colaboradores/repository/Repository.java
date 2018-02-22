@@ -16,8 +16,13 @@ public abstract class Repository<T> {
 
 	@SuppressWarnings("unchecked")
 	public List<T> findAll() {
-		List<T> result = (List<T>) em.createQuery("Select t from " + type.getName() + " t").getResultList();
-		return result;
+		List<T> lista = null;
+		try {
+			lista = (List<T>) em.createQuery("Select t from " + type.getName() + " t").getResultList();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return lista;
 	}
 
 	public void save(T t) {
