@@ -1,10 +1,56 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:p="http://primefaces.org/ui" template="/WEB-INF/template.xhtml"
+	xmlns:p="http://primefaces.org/ui"
 	xmlns:f="http://java.sun.com/jsf/core">
 
-	<p:dialog header="Modal Dialog" widgetVar="dlg2" modal="true" 
-		height="100">
-		<h:outputText value="This is a Modal Dialog." />
+	<p:dialog header="Incluir Informações bancarias" widgetVar="dlg2"
+		responsive="true" appendTo="@(body)" modal="true" height="400"
+		width="500">
+		
+		<h:form id="form1">
+		
+		<p:messages closable="true" autoUpdate="true"  />
+
+			<h:panelGrid columns="1" cellpadding="10">
+
+				<p:outputLabel value="Lista Banco:" for="banco" />
+				<p:autoComplete id="banco" dropdown="true"
+					value="#{manterColaboradorController.infoBaco.banco}"
+					completeMethod="#{manterColaboradorController.getListaBanco()}"
+					type="br.com.consignum.colaboradores.models.BancoPojo"
+					scrollHeight="200" size="55" required="true" />
+
+				<p:outputLabel value="Conta" />
+				<p:inputMask mask="9999-9" size="55" converter="maskConverter"
+					placeholder="Ex: 4854-8"
+					value="#{manterColaboradorController.infoBaco.conta}"
+					required="true" requiredMessage="Campos conta não pode ser nullo"
+					disabled="#{manterColaboradorController.modoVisualizacao}" />
+
+				<p:outputLabel value="Agencia" />
+				<p:inputMask mask="99999-9" size="55" converter="maskConverter"
+					placeholder="Ex: 31233-8"
+					value="#{manterColaboradorController.infoBaco.agencia}"
+					required="true" requiredMessage="Campos agencia não pode ser nullo"
+					disabled="#{manterColaboradorController.modoVisualizacao}" />
+
+			</h:panelGrid>
+
+			<p:panelGrid>
+
+
+				<p:commandButton id="add" value="Adicionar"
+					styleClass="ResponsiveButton"
+					oncomplete="if (!args.validationFailed) PF('dlg2').hide()"
+					update="@form, @([id$='gridBanco'])"
+					action="#{manterColaboradorController.adicionaBanco(manterColaboradorController.infoBaco)}" />
+
+				<p:commandButton id="cancelar" onclick="PF('dlg2').hide();"
+					value="Cancelar" immediate="true" styleClass="ResponsiveButton" />
+			</p:panelGrid>
+		</h:form>
+
 	</p:dialog>
+
+</ui:composition>

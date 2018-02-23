@@ -1,11 +1,16 @@
 package br.com.consignum.colaboradores.controllers;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import br.com.consignum.colaboradores.models.BancoPojo;
 import br.com.consignum.colaboradores.models.Endereco;
+import br.com.consignum.colaboradores.models.InfoBancario;
 import br.com.consignum.colaboradores.models.Pessoa;
 import br.com.consignum.colaboradores.repository.PessoaRepository;
 import br.com.consignum.colaboradores.services.RestService;
@@ -21,12 +26,16 @@ public class ManterColaboradorController extends Controller {
 	private Long id;
 
 	private Pessoa pessoa = new Pessoa();
-
+	
+	private InfoBancario infoBaco = new InfoBancario();
+	
+	private List<InfoBancario> infoBancarios;
+	
+	private BancoPojo bancoPojo;
 
 	@Inject
 	private PessoaRepository pessoaRepository;
 	
-
 	@PostConstruct
 	public void init() {
 		 pessoa.setEndereco(new Endereco());
@@ -48,8 +57,15 @@ public class ManterColaboradorController extends Controller {
 	}
 
 	public String adicionar(Pessoa pessoa) {
-		pessoaRepository.save(pessoa);
-		addInfoMessage("Registro incluido com sucesso");
+		
+		boolean inclusao = this.pessoa.getId() == null;
+		
+		pessoaRepository.save(this.pessoa);
+		if(inclusao) {
+			addInfoMessage("Registro incluido com sucesso");
+		}else {
+			addInfoMessage("Registro alterado com sucesso");
+		}
 		return ListaColaboradorController.LISTAR_COLABORADOR;
 	}
 
@@ -94,6 +110,24 @@ public class ManterColaboradorController extends Controller {
 		this.pessoa.setEndereco(endereco);
 		System.out.println(this.pessoa.getEndereco().toString());
 	}
+	
+	public List<BancoPojo> getListaBanco() {
+		List<BancoPojo> lista = new ArrayList<BancoPojo>();
+		if(lista.isEmpty()) {
+			bancoPojo = new BancoPojo();
+			lista  = RestService.listaTodosBancos();
+		}
+		return lista;
+	}
+	
+	public void adicionaBanco(InfoBancario infoBancario) {
+//		this.pessoa.getBancoList().add(this.infoBaco);
+		this.infoBancarios.add(this.infoBaco);
+	}
+	
+	public void getOpenPopup() {
+		infoBaco = new InfoBancario();
+	}
 
 	public Long getId() {
 		return id;
@@ -110,5 +144,37 @@ public class ManterColaboradorController extends Controller {
 	public void setPessoa(Pessoa pessoa) {
 		this.pessoa = pessoa;
 	}
+
+
+	public InfoBancario getInfoBaco() {
+		return infoBaco;
+	}
+
+
+	public void setInfoBaco(InfoBancario infoBaco) {
+		this.infoBaco = infoBaco;
+	}
+
+
+	public BancoPojo getBancoPojo() {
+		return bancoPojo;
+	}
+
+	public void setBancoPojo(BancoPojo bancoPojo) {
+		this.bancoPojo = bancoPojo;
+	}
+
+
+	public List<InfoBancario> getInfoBancarios() {
+		return infoBancarios;
+	}
+
+
+	public void setInfoBancarios(List<InfoBancario> infoBancarios) {
+		this.infoBancarios = infoBancarios;
+	}
+	
+	
+	
 
 }

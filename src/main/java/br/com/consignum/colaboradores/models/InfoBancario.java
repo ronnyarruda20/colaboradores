@@ -15,12 +15,12 @@ public class InfoBancario {
 	private Integer id;
 	
 	@Column(name = "Banco", length = 100, nullable = false)
-	private String Banco;
+	private String banco;
 	
-	@Column(name = "CONTA", length = 100, nullable = false)
+	@Column(name = "CONTA", length = 6, nullable = false)
 	private String conta;
 	
-	@Column(name = "AGENCIA", length = 100, nullable = false)
+	@Column(name = "AGENCIA", length = 9, nullable = false)
 	private String agencia;
 	
 	@ManyToOne(optional = false)
@@ -56,6 +56,14 @@ public class InfoBancario {
 
 	public void setPessoa(Pessoa pessoa) {
 		this.pessoa = pessoa;
+	}
+
+	public String getBanco() {
+		return banco;
+	}
+
+	public void setBanco(String banco) {
+		this.banco = banco;
 	}
 
 }

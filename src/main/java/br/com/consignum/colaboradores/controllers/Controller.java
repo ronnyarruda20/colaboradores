@@ -5,6 +5,8 @@ import java.io.Serializable;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 
+import org.primefaces.context.RequestContext;
+
 public abstract class Controller implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -77,6 +79,8 @@ public abstract class Controller implements Serializable {
 	}
 
 	public void addErrorMessage(String message) {
+		RequestContext.getCurrentInstance().addCallbackParam("validationFailed", true);
+		RequestContext.getCurrentInstance().execute("scrollPopupUp();");
 		FacesContext.getCurrentInstance().addMessage(null,
 				new FacesMessage(FacesMessage.SEVERITY_FATAL, message, "PrimeFaces Rocks."));
 

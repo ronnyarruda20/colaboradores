@@ -12,14 +12,13 @@
 		<h:form id="form">
 
 			<h2>Cadastrar Colaborador</h2>
-			<p:messages closable="true" autoUpdate="true" />
+			<p:messages closable="true" autoUpdate="false"  />
 
 			<p:separator />
+			<h:inputHidden value="#{manterColaboradorController.pessoa.id}" />
 
 			<h:panelGrid columns="4" cellpadding="10">
 
-				<p:outputLabel
-					value="Id : #{manterColaboradorController.pessoa.id} " />
 
 				<p:outputLabel value="Nome:" />
 				<p:inputText value="#{manterColaboradorController.pessoa.nome}"
@@ -52,7 +51,7 @@
 
 			<p:separator />
 
-			<h:panelGrid columns="6" cellpadding="1">
+			<h:panelGrid columns="6" cellpadding="1" id="emailGrid">
 
 
 				<p:outputLabel value="CEP:" />
@@ -63,7 +62,7 @@
 					disabled="#{manterColaboradorController.modoVisualizacao}">
 					<p:ajax event="blur"
 						listener="#{manterColaboradorController.carregaCep()}"
-						update="@form" />
+						update="emailGrid" />
 				</p:inputMask>
 
 
@@ -92,10 +91,10 @@
 					disabled="#{manterColaboradorController.modoVisualizacao}" />
 
 				<p:outputLabel value="Nª:" />
-				<p:inputText size="6"
+				<p:inputNumber size="6"
 					value="#{manterColaboradorController.pessoa.endereco.numero}"
 					required="true" requiredMessage="Campos Numero não pode ser nullo"
-					disabled="#{manterColaboradorController.modoVisualizacao}" />
+					disabled="#{manterColaboradorController.modoVisualizacao}" maxlength="2" />
 
 				<p:outputLabel value="Complemento:" />
 				<p:inputText size="40" />
@@ -104,7 +103,7 @@
 			<p:separator />
 			<p:separator />
 
-			<h:panelGrid style="padding:10px">
+			<h:panelGrid style="padding:10px" id="gridBanco">
 				<p:dataTable var="banco"
 					value="#{manterColaboradorController.pessoa.bancoList}"
 					reflow="true">
@@ -123,8 +122,6 @@
 
 					<p:column headerText="Ações" style="text-align:center" width="100">
 
-
-
 						<p:commandButton id="edir" title="Editar"
 							icon="fa fa-edit white Fs10"
 							action="#{manterColaboradorController.editar(colaborador)}" />
@@ -140,8 +137,8 @@
 
 				</p:dataTable>
 				<p:panelGrid style="padding:10px">
-					<p:commandButton value="Modal" type="button"
-						onclick="PF('dlg2').show();" />
+					<p:commandButton value="Adicionar" type="button"
+						onclick="PF('dlg2').show();" actionListener="#{manterColaboradorController.getOpenPopup()}" update="form1"/>
 				</p:panelGrid>
 			</h:panelGrid>
 
@@ -157,9 +154,9 @@
 					immediate="true" />
 			</p:panelGrid>
 		</h:form>
+		<ui:include src="/resources/paginas/modal/infoBancoPopup.xhtml" />
 
 	</ui:define>
-<!-- 		<ui:include src="../paginas/modal/infoBancoPopup.xhtml" /> -->
 
 </ui:composition>
 
