@@ -23,25 +23,25 @@ public class Pessoa {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
-	
+
 	@Column(name = "NOME", length = 100, nullable = false)
 	private String nome;
-	
+
 	@Column(name = "DATA_NASCIMENTO", nullable = false)
 	private Date nascimento;
-	
+
 	@Column(name = "REGISTRO_GERAL", length = 9, nullable = false)
 	private String registroGeral;
-	
+
 	@Column(name = "EMAIL", length = 100, nullable = false)
 	private String email;
-	
-	@OneToOne(mappedBy = "pessoa" , cascade = CascadeType.ALL)
-	private Endereco endereco = new Endereco();
-	
+
+	@OneToOne(mappedBy = "pessoa", cascade = CascadeType.ALL)
+	private Endereco endereco;
+
 	@OneToMany(mappedBy = "pessoa", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
 	private Set<InfoBancario> bancos = new HashSet<InfoBancario>();
-	
+
 	@Transient
 	private List<InfoBancario> bancoList = new ArrayList<InfoBancario>();
 
@@ -108,6 +108,5 @@ public class Pessoa {
 	public void setBancoList(List<InfoBancario> bancoList) {
 		this.bancoList = bancoList;
 	}
-	
-	
+
 }

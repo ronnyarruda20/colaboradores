@@ -5,6 +5,7 @@
 	version="3.1">
 
 	<display-name>Colaboradores</display-name>
+	
 	<welcome-file-list>
 		<welcome-file>index.xhtml</welcome-file>
 	</welcome-file-list>
@@ -34,8 +35,8 @@
 	</servlet-mapping>
 
 	<context-param>
-			<param-name>primefaces.THEME</param-name>
-			<param-value>adamantium</param-value>
+		<param-name>primefaces.THEME</param-name>
+		<param-value>adamantium</param-value>
 	</context-param>
 
 </web-app>

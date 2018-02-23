@@ -2,6 +2,7 @@ package br.com.consignum.colaboradores.models;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -20,7 +21,7 @@ public class Endereco {
 	private String uf;
 
 	@Column(name = "CIDADE", length = 100, nullable = false)
-	private String cidade;
+	private String localidade;
 
 	@Column(name = "BAIRRO", length = 100, nullable = false)
 	private String bairro;
@@ -34,19 +35,20 @@ public class Endereco {
 	@Column(name = "CEP", length = 8, nullable = false)
 	private String cep;
 
-	@Column(name = "COMPLEMENTO", length = 8, nullable = false)
+	@Column(name = "COMPLEMENTO", length = 100)
 	private String complemento;
 
-	@Transient
-	private String localidade;
 	@Transient
 	private String unidade;
 	@Transient
 	private String ibge;
 	@Transient
 	private String gia;
+	
+	@Transient
+	private boolean erro;
 
-	@OneToOne
+	@OneToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "pessoa_id")
 	private Pessoa pessoa;
 
@@ -66,13 +68,6 @@ public class Endereco {
 		this.uf = uf;
 	}
 
-	public String getCidade() {
-		return cidade;
-	}
-
-	public void setCidade(String cidade) {
-		this.cidade = cidade;
-	}
 
 	public String getBairro() {
 		return bairro;
@@ -154,11 +149,19 @@ public class Endereco {
 		this.gia = gia;
 	}
 
+	public boolean isErro() {
+		return erro;
+	}
+
+	public void setErro(boolean erro) {
+		this.erro = erro;
+	}
+
 	@Override
 	public String toString() {
-		return "Endereco [id=" + id + ", uf=" + uf + ", cidade=" + cidade + ", bairro=" + bairro + ", logradouro="
-				+ logradouro + ", numero=" + numero + ", cep=" + cep + ", complemento=" + complemento + ", localidade="
-				+ localidade + ", unidade=" + unidade + ", ibge=" + ibge + ", gia=" + gia + ", pessoa=" + pessoa + "]";
+		return "Endereco [id=" + id + ", uf=" + uf + ", localidade=" + localidade + ", bairro=" + bairro
+				+ ", logradouro=" + logradouro + ", numero=" + numero + ", cep=" + cep + ", complemento=" + complemento
+				+ ", unidade=" + unidade + ", ibge=" + ibge + ", gia=" + gia + ", pessoa=" + pessoa + "]";
 	}
-	
+
 }

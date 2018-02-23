@@ -17,6 +17,8 @@ import br.com.consignum.colaboradores.repository.PessoaRepository;
 public class ListaColaboradorController implements Serializable {
 
 	private static final long serialVersionUID = 8221389380643774417L;
+	
+	public static final String LISTAR_COLABORADOR = "/resources/paginas/pesquisarColaborador";
 
 	private Long id;
 
@@ -32,6 +34,11 @@ public class ListaColaboradorController implements Serializable {
 	public void init() {
 		pessoaList = new ArrayList<Pessoa>();
 		pessoaList.addAll(this.pessoaList());
+	}
+	
+	public String editar(Pessoa pessoa) {
+		this.pessoa = pessoa;
+		return ManterColaboradorController.MANTER_COLABORADOR;
 	}
 
 

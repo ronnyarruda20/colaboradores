@@ -12,92 +12,154 @@
 		<h:form id="form">
 
 			<h2>Cadastrar Colaborador</h2>
-			<p:messages  closable="true" autoUpdate="true"/>
+			<p:messages closable="true" autoUpdate="true" />
 
 			<p:separator />
-			<p:panel>
 
-				<h:panelGrid columns="4" cellpadding="10">
+			<h:panelGrid columns="4" cellpadding="10">
 
-					<p:outputLabel value="Nome:" />
-					<p:inputText value="#{manterColaboradorController.pessoa.nome}"
-						size="55" placeholder="Ex: Steve Jobs" required="true"
-						requiredMessage="Campos nome não pode ser nullo" />
+				<p:outputLabel
+					value="Id : #{manterColaboradorController.pessoa.id} " />
 
-					<p:outputLabel value="Email:" />
-					<p:inputText value="#{manterColaboradorController.pessoa.email}"
-						size="55" placeholder="Ex: email@dominio.com.br" required="true" 
-						requiredMessage="Campos Email não pode ser nullo"/>
+				<p:outputLabel value="Nome:" />
+				<p:inputText value="#{manterColaboradorController.pessoa.nome}"
+					size="55" placeholder="Ex: Steve Jobs" required="true"
+					requiredMessage="Campos nome não pode ser nullo"
+					disabled="#{manterColaboradorController.modoVisualizacao}" />
 
-					<p:outputLabel value="RG:" />
-					<p:inputMask mask="99.999.999-9" size="55"
-						converter="maskConverter"
-						placeholder="Ex: 39.053.239-3"
-						value="#{manterColaboradorController.pessoa.registroGeral}"
-						required="true" requiredMessage="Campos RG não pode ser nullo"/>
-						
-					<p:outputLabel value="Data Nasc.:" />
-					<p:inputMask mask="99/99/9999" size="55"
-						placeholder="Ex: 01/01/2000"
-						value="#{manterColaboradorController.pessoa.nascimento}"
-						required="true" requiredMessage="Campos Data Nascimento não pode ser nullo" converter="javax.faces.DateTime"/>
-				</h:panelGrid>
+				<p:outputLabel value="Email:" />
+				<p:inputText value="#{manterColaboradorController.pessoa.email}"
+					size="55" placeholder="Ex: email@dominio.com.br" required="true"
+					requiredMessage="Campos Email não pode ser nullo"
+					disabled="#{manterColaboradorController.modoVisualizacao}" />
 
-				<p:separator />
+				<p:outputLabel value="RG:" />
+				<p:inputMask mask="99.999.999-9" size="55" converter="maskConverter"
+					placeholder="Ex: 39.053.239-3"
+					value="#{manterColaboradorController.pessoa.registroGeral}"
+					required="true" requiredMessage="Campos RG não pode ser nullo"
+					disabled="#{manterColaboradorController.modoVisualizacao}" />
 
-				<h:panelGrid columns="6" cellpadding="1">
-				
-				
+				<p:outputLabel value="Data Nasc.:" />
+				<p:inputMask mask="99/99/9999" size="55"
+					placeholder="Ex: 01/01/2000"
+					value="#{manterColaboradorController.pessoa.nascimento}"
+					required="true"
+					requiredMessage="Campos Data Nascimento não pode ser nullo"
+					converter="javax.faces.DateTime"
+					disabled="#{manterColaboradorController.modoVisualizacao}" />
+			</h:panelGrid>
+
+			<p:separator />
+
+			<h:panelGrid columns="6" cellpadding="1">
+
+
 				<p:outputLabel value="CEP:" />
-					<p:inputMask mask="99999-999" size="40" converter="maskConverter"
-						placeholder="Ex: 78000-000"
-						value="#{manterColaboradorController.pessoa.endereco.cep}"
-						required="true" requiredMessage="Campos CEP não pode ser nullo" >
-<!-- 						<f:ajax listener="#{manterColaboradorController.carregaCep}" event="blur" render="@form"/> -->
-						<p:ajax listener="#{manterColaboradorController.carregaCep}" event="blur" render="@form"/>
-					</p:inputMask>
+				<p:inputMask mask="99999-999" size="40" converter="maskConverter"
+					placeholder="Ex: 78000-000"
+					value="#{manterColaboradorController.pessoa.endereco.cep}"
+					required="true" requiredMessage="Campos CEP não pode ser nullo"
+					disabled="#{manterColaboradorController.modoVisualizacao}">
+					<p:ajax event="blur"
+						listener="#{manterColaboradorController.carregaCep()}"
+						update="@form" />
+				</p:inputMask>
 
-					<p:outputLabel value="Cidade:" />
-					<p:inputText size="40"
-						value="#{manterColaboradorController.pessoa.endereco.cidade}"
-						required="true" requiredMessage="Campos Cidade não pode ser nullo"/>
 
-					<p:outputLabel value="Estado:" />
-					<p:inputText size="40"
-						value="#{manterColaboradorController.pessoa.endereco.uf}"
-						required="true" requiredMessage="Campos Estado não pode ser nullo"/>
+				<p:outputLabel value="Cidade:" />
+				<p:inputText size="40"
+					value="#{manterColaboradorController.pessoa.endereco.localidade}"
+					required="true" requiredMessage="Campos Cidade não pode ser nullo"
+					disabled="#{manterColaboradorController.modoVisualizacao}" />
 
-					<p:outputLabel value="Bairro:" />
-					<p:inputText size="40"
-						value="#{manterColaboradorController.pessoa.endereco.bairro}"
-						required="true" requiredMessage="Campos Bairro não pode ser nullo"/>
+				<p:outputLabel value="Estado:" />
+				<p:inputText size="40"
+					value="#{manterColaboradorController.pessoa.endereco.uf}"
+					required="true" requiredMessage="Campos Estado não pode ser nullo"
+					disabled="#{manterColaboradorController.modoVisualizacao}" />
 
-					<p:outputLabel value="Rua:" />
-					<p:inputText size="40"
-						value="#{manterColaboradorController.pessoa.endereco.logradouro}"
-						required="true" requiredMessage="Campos Rua não pode ser nullo"/>
+				<p:outputLabel value="Bairro:" />
+				<p:inputText size="40"
+					value="#{manterColaboradorController.pessoa.endereco.bairro}"
+					required="true" requiredMessage="Campos Bairro não pode ser nullo"
+					disabled="#{manterColaboradorController.modoVisualizacao}" />
 
-					<p:outputLabel value="Nª:" />
-					<p:inputText size="6"
-						value="#{manterColaboradorController.pessoa.endereco.numero}"
-						required="true" requiredMessage="Campos Numero não pode ser nullo"/>
+				<p:outputLabel value="Rua:" />
+				<p:inputText size="40"
+					value="#{manterColaboradorController.pessoa.endereco.logradouro}"
+					required="true" requiredMessage="Campos Rua não pode ser nullo"
+					disabled="#{manterColaboradorController.modoVisualizacao}" />
 
-					<p:outputLabel value="Complemento:" />
-					<p:inputText size="30" />
-				</h:panelGrid>
+				<p:outputLabel value="Nª:" />
+				<p:inputText size="6"
+					value="#{manterColaboradorController.pessoa.endereco.numero}"
+					required="true" requiredMessage="Campos Numero não pode ser nullo"
+					disabled="#{manterColaboradorController.modoVisualizacao}" />
 
-				<p:separator />
+				<p:outputLabel value="Complemento:" />
+				<p:inputText size="40" />
+			</h:panelGrid>
 
+			<p:separator />
+			<p:separator />
+
+			<h:panelGrid style="padding:10px">
+				<p:dataTable var="banco"
+					value="#{manterColaboradorController.pessoa.bancoList}"
+					reflow="true">
+
+					<p:column headerText="Banco">
+						<h:outputText value="#{banco.banco}" />
+					</p:column>
+
+					<p:column headerText="Agencia">
+						<h:outputText value="#{banco.agencia}" />
+					</p:column>
+
+					<p:column headerText="Conta">
+						<h:outputText value="#{banco.conta}" />
+					</p:column>
+
+					<p:column headerText="Ações" style="text-align:center" width="100">
+
+
+
+						<p:commandButton id="edir" title="Editar"
+							icon="fa fa-edit white Fs10"
+							action="#{manterColaboradorController.editar(colaborador)}" />
+
+						<p:commandButton title="Editar" icon="fa fa-remove white Fs10"
+							action="#{manterColaboradorController.remover(colaborador)}"
+							update="@form">
+							<p:confirm header="Exclusão de registro permanente"
+								message="Tem Certeza que dejesa excluir este registro?"
+								icon="ui-icon-blank" />
+						</p:commandButton>
+					</p:column>
+
+				</p:dataTable>
 				<p:panelGrid style="padding:10px">
-					<p:commandButton value="Salvar" update="@form"
-						action="#{manterColaboradorController.adicionar(manterColaboradorController.pessoa)}" />
-						
-					<p:commandButton value="Cancelar" onclick="window.history.back();" />
+					<p:commandButton value="Modal" type="button"
+						onclick="PF('dlg2').show();" />
 				</p:panelGrid>
-			</p:panel>
+			</h:panelGrid>
+
+			<p:separator />
+
+			<p:panelGrid style="padding:10px">
+				<p:commandButton value="Salvar" update="@form"
+					action="#{manterColaboradorController.adicionar(manterColaboradorController.pessoa)}" />
+
+
+
+				<p:commandButton value="Cancelar" onclick="window.history.back();"
+					immediate="true" />
+			</p:panelGrid>
 		</h:form>
 
 	</ui:define>
+<!-- 		<ui:include src="../paginas/modal/infoBancoPopup.xhtml" /> -->
 
 </ui:composition>
 
